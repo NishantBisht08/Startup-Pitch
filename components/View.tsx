@@ -1,5 +1,5 @@
 import React from "react";
-import { sanityFetch } from "@/sanity/lib/live";
+
 import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import Ping from "./Ping";
@@ -20,10 +20,7 @@ const View = async ({ id }: { id: string }) => {
         .commit()
   );
 
-  after(async () => {
-    // Execute after the layout is rendered and sent to the user
-    console.log();
-  });
+
 
   return (
     <div className="view-container">

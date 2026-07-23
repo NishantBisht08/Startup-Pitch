@@ -5,7 +5,6 @@ import React from "react";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-import { mdxCompile } from "next/dist/build/swc/generated-native";
 import markdownit from "markdown-it";
 import View from "@/components/View";
 
@@ -37,7 +36,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
             <Link
-              href={`user/${post.author?.id}`}
+              href={`/user/${post.author?._id}`}
               className="flex gap-2 items-center mb-3"
             >
               <Image

@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Startup, Author } from "@/sanity/types";
-import { log } from "node:console";
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
 
@@ -21,7 +20,6 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
     _id,
     image,
   } = post;
-  console.log(_createdAt);
   return (
     <li className="startup-card group">
       <div className="flex-between">
@@ -42,8 +40,8 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src="https://placehold.co/48x48"
-            alt="placeholder"
+            src={author?.image || "https://placehold.co/48x48"}
+            alt={author?.name || "author"}
             width={48}
             height={48}
             className="rounded-full"

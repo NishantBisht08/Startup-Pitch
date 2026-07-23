@@ -3,14 +3,12 @@
 import { auth } from "@/auth";
 import { parseServerActionResponse } from "./utils";
 import slugify from "slugify";
-import { author } from "@/sanity/schemaTypes/author";
 import { writeClient } from "@/sanity/lib/write-client";
-import { start } from "repl";
 
 // first server action
 
 export const createPitch = async (
-  state: any,
+  state: { error: string; status: string },
   form: FormData,
   pitch: string
 ) => {

@@ -1,13 +1,9 @@
-import { SearchParams } from "next/dist/server/request/search-params";
 import SearchForm from "../../components/SearchForm";
 import StartupCard from "@/components/StartupCard";
-import { client } from "@/sanity/lib/client";
 import { STARTUP_QUERY } from "@/sanity/lib/queries";
-import { Startup, Author } from "@/sanity/types";
 import { StartupCardType } from "@/components/StartupCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { auth } from "@/auth";
-// export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
 
 export default async function Home({
   searchParams,
@@ -18,12 +14,8 @@ export default async function Home({
   const params = { search: query || null };
 
   const session = await auth();
-  console.log(`Session id: ${session?.id}`);
 
-  // const posts = await client.fetch(STARTUP_QUERY);
   const { data: posts } = await sanityFetch({ query: STARTUP_QUERY, params });
-
-  console.log(JSON.stringify(posts, null, 2));
 
   return (
     <>
@@ -58,16 +50,3 @@ export default async function Home({
   );
 }
 
-// const posts = [
-//   {
-//     _createdAt: new Date(),
-//     views: 55,
-//     author: { _id: 1, name: "Anubhav" },
-//     _id: 101,
-//     description: "This is a description",
-//     image:
-//       "https://plus.unsplash.com/premium_photo-1661962812180-b9f7dd4f85cf?q=80&w=1196&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     category: "Robots",
-//     title: "We Robots",
-//   },
-// ];
